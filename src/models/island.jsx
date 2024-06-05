@@ -19,7 +19,7 @@ const Island = ({ IsRotating, setIsRotating, setCurrentStage, ...props }) => {
   const { gl, viewport } = useThree();
   const lastX = useRef(0);
   const rotationSpeed = useRef(0);
-  const damoingFactor = 0.95;
+  const dampingFactor = 0.95;
 
   const handlePointerDown = (e) => {
     e.stopPropagation();
@@ -51,13 +51,17 @@ const Island = ({ IsRotating, setIsRotating, setCurrentStage, ...props }) => {
       rotationSpeed.current = delta * 0.01 * Math.PI;
     }
   };
-  const handleKeyDown = (e) => {
-    if (e.key === "ArrowLeft") {
+  const handleKeyDown = (event) => {
+    if (event.key === "ArrowLeft") {
       if (!IsRotating) setIsRotating(true);
-      islandRef.current.rotation.y += 0.01 * Math.Py;
-    } else if (e.key === "ArrowRight") {
+
+      islandRef.current.rotation.y += 0.005 * Math.PI;
+      rotationSpeed.current = 0.007;
+    } else if (event.key === "ArrowRight") {
       if (!IsRotating) setIsRotating(true);
-      islandRef.current.rotation.y -= 0.01 * Math.PI;
+
+      islandRef.current.rotation.y -= 0.005 * Math.PI;
+      rotationSpeed.current = -0.007;
     }
   };
   const handleKeyUp = (e) => {
@@ -65,38 +69,6 @@ const Island = ({ IsRotating, setIsRotating, setCurrentStage, ...props }) => {
       setIsRotating(false);
     }
   };
-
-  useFrame(() => {
-    if (IsRotating) {
-      rotationSpeed.current *= damoingFactor;
-      if (Math.abs(rotationSpeed.current) < 0.001) {
-        rotationSpeed.current = 0;
-      }
-      islandRef.current.rotation.y += rotationSpeed.current;
-    } else {
-      const rotation = islandRef.current.rotation.y;
-      const normalizedRotation =
-        ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
-
-      // Set the current stage based on the island's orientation
-      switch (true) {
-        case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
-          setCurrentStage(4);
-          break;
-        case normalizedRotation >= 0.85 && normalizedRotation <= 1.3:
-          setCurrentStage(3);
-          break;
-        case normalizedRotation >= 2.4 && normalizedRotation <= 2.6:
-          setCurrentStage(2);
-          break;
-        case normalizedRotation >= 4.25 && normalizedRotation <= 4.75:
-          setCurrentStage(1);
-          break;
-        default:
-          setCurrentStage(null);
-      }
-    }
-  });
 
   useEffect(() => {
     const canvas = gl.domElement;
@@ -114,6 +86,50 @@ const Island = ({ IsRotating, setIsRotating, setCurrentStage, ...props }) => {
       canvas.removeEventListener("keyup", handleKeyUp);
     };
   }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]);
+
+  useFrame(() => {
+    // If not rotating, apply damping to slow down the rotation (smoothly)
+    if (!IsRotating) {
+      // Apply damping factor
+      rotationSpeed.current *= dampingFactor;
+
+      // Stop rotation when speed is very small
+      if (Math.abs(rotationSpeed.current) < 0.001) {
+        rotationSpeed.current = 0;
+      }
+
+      islandRef.current.rotation.y += rotationSpeed.current;
+    } else {
+      // When rotating, determine the current stage based on island's orientation
+      const rotation = islandRef.current.rotation.y;
+
+      /**
+       * Normalize the rotation value to ensure it stays within the range [0, 2 * Math.PI].
+       */
+      const normalizedRotation =
+        ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+
+      // Set the current stage based on the island's orientation
+      switch (true) {
+        case normalizedRotation >= 0 && normalizedRotation < Math.PI / 2:
+          setCurrentStage(1);
+          break;
+        case normalizedRotation >= Math.PI / 2 && normalizedRotation < Math.PI:
+          setCurrentStage(2);
+          break;
+        case normalizedRotation >= Math.PI &&
+          normalizedRotation < (3 * Math.PI) / 2:
+          setCurrentStage(3);
+          break;
+        case normalizedRotation >= (3 * Math.PI) / 2 &&
+          normalizedRotation < 2 * Math.PI:
+          setCurrentStage(4);
+          break;
+        default:
+          setCurrentStage(null);
+      }
+    }
+  });
 
   return (
     <a.group ref={islandRef} {...props}>
