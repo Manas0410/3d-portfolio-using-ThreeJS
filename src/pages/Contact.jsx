@@ -4,6 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { Fox } from "../models/Fox";
 import Loader from "../Components/Loader";
 import useAlert from "../hooks/useAlert";
+import Alert from "../Components/Alert";
 
 const Contact = () => {
   const { alert, showAlert, hideAlert } = useAlert();
@@ -69,6 +70,7 @@ const Contact = () => {
 
   return (
     <section className="relative flex lg:flex-row flex-col max-container">
+      {alert.show && <Alert {...alert} />}
       <div className="flex-1 min-w-[50%] flex flex-col">
         <h1 className="head-text">Get in Touch</h1>
 
