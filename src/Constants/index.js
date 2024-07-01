@@ -24,8 +24,116 @@ import {
   tailwindcss,
   threads,
   typescript,
+  restApi,
+  socketio,
+  aws,
+  docker,
+  nginx,
 } from "../assets/icons";
 
+export const FrontendSkills = [
+  {
+    imageUrl: react,
+    name: "React",
+    type: "Frontend",
+  },
+  {
+    imageUrl: typescript,
+    name: "TypeScript",
+    type: "Frontend",
+  },
+  {
+    imageUrl: javascript,
+    name: "JavaScript",
+    type: "Frontend",
+  },
+  {
+    imageUrl: nextjs,
+    name: "Next.js",
+    type: "Frontend",
+  },
+  {
+    imageUrl: redux,
+    name: "Redux",
+    type: "State Management",
+  },
+  {
+    imageUrl: html,
+    name: "HTML5",
+    type: "Frontend",
+  },
+  {
+    imageUrl: css,
+    name: "CSS3",
+    type: "Frontend",
+  },
+  {
+    imageUrl: tailwindcss,
+    name: "Tailwind CSS",
+    type: "Frontend",
+  },
+  {
+    imageUrl: mui,
+    name: "Material-UI",
+    type: "Frontend",
+  },
+];
+
+export const BackendSkils = [
+  {
+    imageUrl: nodejs,
+    name: "Node.js",
+    type: "Backend",
+  },
+  {
+    imageUrl: express,
+    name: "Express",
+    type: "Backend",
+  },
+  {
+    imageUrl: mongodb,
+    name: "MongoDB",
+    type: "Database",
+  },
+  {
+    imageUrl: restApi,
+    name: "REST API",
+    type: "Backend",
+  },
+  {
+    imageUrl: socketio,
+    name: "Socket.io",
+    type: "Backend",
+  },
+];
+
+export const Miscelleneus = [
+  {
+    imageUrl: git,
+    name: "Git",
+    type: "Version Control",
+  },
+  {
+    imageUrl: github,
+    name: "GitHub",
+    type: "Version Control",
+  },
+  {
+    imageUrl: aws,
+    name: "AWS",
+    type: "Cloud",
+  },
+  {
+    imageUrl: docker,
+    name: "Docker",
+    type: "Containerization",
+  },
+  {
+    imageUrl: nginx,
+    name: "NGINX",
+    type: "Server",
+  },
+];
 export const skills = [
   {
     imageUrl: css,
@@ -52,11 +160,7 @@ export const skills = [
     name: "HTML",
     type: "Frontend",
   },
-  {
-    imageUrl: javascript,
-    name: "JavaScript",
-    type: "Frontend",
-  },
+
   {
     imageUrl: mongodb,
     name: "MongoDB",

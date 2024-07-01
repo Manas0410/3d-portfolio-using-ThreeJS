@@ -3,8 +3,15 @@ import {
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
-import { skills, experiences } from "../Constants";
+import {
+  skills,
+  experiences,
+  FrontendSkills,
+  BackendSkils,
+  Miscelleneus,
+} from "../Constants";
 import CTA from "../Components/CTA";
+import ToolTip from "../Components/ToolTip";
 
 const About = () => {
   return (
@@ -25,22 +32,67 @@ const About = () => {
       </div>
       <div className="py-10 flex flex-col">
         <h3 className="subhead-text">My Skills</h3>
-        <div className="mt-16 flex flex-wrap gap-12">
-          {skills.map((skill, i) => (
-            <div
-              index={i}
-              title={skill.name}
-              className="block-container w-20 h-20"
-            >
-              <div className="btn-back rounded-xl" />
-              <div className="btn-front rounded-xl element-center ">
-                <img
-                  src={skill.imageUrl}
-                  alt={skill.name}
-                  className="h-1/2 w-1/2 object-contain"
-                />
+        <h4 className="subhead-text-2">Frontend Skills</h4>
+        <div className="mt-9 flex flex-wrap gap-12">
+          {FrontendSkills.map((skill, i) => (
+            <ToolTip title={skill.name} key={i}>
+              <div
+                index={i}
+                title={skill.name}
+                className="block-container w-20 h-20"
+              >
+                <div className="btn-back rounded-xl" />
+                <div className="btn-front rounded-xl element-center ">
+                  <img
+                    src={skill.imageUrl}
+                    alt={skill.name}
+                    className="h-1/2 w-1/2 object-contain"
+                  />
+                </div>
               </div>
-            </div>
+            </ToolTip>
+          ))}
+        </div>
+        <h4 className="subhead-text-2">Backend Skills</h4>
+        <div className="mt-9 flex flex-wrap gap-12">
+          {BackendSkils.map((skill, i) => (
+            <ToolTip title={skill.name} key={i}>
+              <div
+                index={i}
+                title={skill.name}
+                className="block-container w-20 h-20"
+              >
+                <div className="btn-back rounded-xl" />
+                <div className="btn-front rounded-xl element-center ">
+                  <img
+                    src={skill.imageUrl}
+                    alt={skill.name}
+                    className="h-1/2 w-1/2 object-contain"
+                  />
+                </div>
+              </div>
+            </ToolTip>
+          ))}
+        </div>
+        <h4 className="subhead-text-2">Miscelleneus</h4>
+        <div className="mt-9 flex flex-wrap gap-12">
+          {Miscelleneus.map((skill, i) => (
+            <ToolTip title={skill.name} key={i}>
+              <div
+                index={i}
+                title={skill.name}
+                className="block-container w-20 h-20"
+              >
+                <div className="btn-back rounded-xl" />
+                <div className="btn-front rounded-xl element-center ">
+                  <img
+                    src={skill.imageUrl}
+                    alt={skill.name}
+                    className="h-1/2 w-1/2 object-contain"
+                  />
+                </div>
+              </div>
+            </ToolTip>
           ))}
         </div>
       </div>
