@@ -31,6 +31,9 @@ import socketio from "./socketio.png";
 import aws from "./aws.svg";
 import docker from "./docker.svg";
 import nginx from "./nginx.svg";
+import contactlinkedin from "./contactlinkedin.svg";
+import contactgithub from "./contactgithub.svg";
+import contactgmail from "./contactgmail.svg";
 
 export {
   css,
@@ -66,4 +69,7 @@ export {
   aws,
   docker,
   nginx,
+  contactlinkedin,
+  contactgithub,
+  contactgmail,
 };

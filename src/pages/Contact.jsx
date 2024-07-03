@@ -5,6 +5,8 @@ import { Fox } from "../models/Fox";
 import Loader from "../Components/Loader";
 import useAlert from "../hooks/useAlert";
 import Alert from "../Components/Alert";
+import { contactgithub, contactgmail, contactlinkedin } from "../assets/icons";
+import ContactIcon from "../Components/ContactIcon";
 
 const Contact = () => {
   const { alert, showAlert, hideAlert } = useAlert();
@@ -71,7 +73,7 @@ const Contact = () => {
   return (
     <section className="relative flex lg:flex-row flex-col max-container">
       {alert.show && <Alert {...alert} />}
-      <div className="flex-1 min-w-[50%] flex flex-col">
+      <div className="flex-1 min-w-[50%] flex flex-col relative">
         <h1 className="head-text">Get in Touch</h1>
 
         <form
@@ -130,8 +132,28 @@ const Contact = () => {
             {IsLoading ? "Sending..." : "Send Message"}
           </button>
         </form>
+        <h3 className="text-xl font-semibold mt-12">Contact me via ...</h3>
+        <nav className=" flex justify-between items-end  w-full flex-wrap">
+          <div className="flex flex-col items-start">
+            <p className="m-0 text-sm max-sm:my-4">
+              manasshrivastava0410@gmail.com{" "}
+            </p>
+          </div>
+          <div className=" flex gap-6">
+            <ContactIcon
+              icon={contactgithub}
+              color={"gray"}
+              link={"https://github.com/Manas0410"}
+            />
+            <ContactIcon
+              icon={contactgmail}
+              link={"mailto:manasshrivastava0410@gmail.com?subject=Hii Manas!"}
+            />
+            <ContactIcon icon={contactlinkedin} color={"#0077b5"} />
+          </div>
+        </nav>
       </div>
-      <div className="lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]">
+      <div className="lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px] relative">
         <Canvas camera={{ position: [0, 0, 5], fov: 75, near: 0.5, far: 1000 }}>
           <directionalLight intensity={2.5} position={[0, 0, 1]} />
           <ambientLight intensity={0.8} />
