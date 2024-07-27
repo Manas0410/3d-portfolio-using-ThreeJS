@@ -135,7 +135,8 @@ const Contact = () => {
         <h3 className="text-xl font-semibold mt-12">Contact me via ...</h3>
         <nav className=" flex justify-between items-end  w-full flex-wrap">
           <div className="flex flex-col items-start">
-            <p className="m-0 text-sm max-sm:my-4">
+            <p className="m-0 text-xs max-sm:my-4">+91 7007022949</p>
+            <p className="m-0 text-xs max-sm:my-4">
               manasshrivastava0410@gmail.com{" "}
             </p>
           </div>
